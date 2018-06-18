@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
   syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"-\n\x0c\x41uthResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t2>\n\x0e\x41uthentication\x12,\n\x0b\x61utheticate\x12\x0c.AuthRequest\x1a\r.AuthResponse\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\nauth.proto\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"@\n\x0c\x41uthResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x11\n\terror_msg\x18\x03 \x01(\t2?\n\x0e\x41uthentication\x12-\n\x0c\x61uthenticate\x12\x0c.AuthRequest\x1a\r.AuthResponse\"\x00\x62\x06proto3')
 )
 
 
@@ -84,6 +84,13 @@ _AUTHRESPONSE = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='error_msg', full_name='AuthResponse.error_msg', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -97,7 +104,7 @@ _AUTHRESPONSE = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=65,
-  serialized_end=110,
+  serialized_end=129,
 )
 
 DESCRIPTOR.message_types_by_name['AuthRequest'] = _AUTHREQUEST
@@ -126,12 +133,12 @@ _AUTHENTICATION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=112,
-  serialized_end=174,
+  serialized_start=131,
+  serialized_end=194,
   methods=[
   _descriptor.MethodDescriptor(
-    name='autheticate',
-    full_name='Authentication.autheticate',
+    name='authenticate',
+    full_name='Authentication.authenticate',
     index=0,
     containing_service=None,
     input_type=_AUTHREQUEST,

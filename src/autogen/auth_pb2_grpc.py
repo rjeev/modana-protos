@@ -14,8 +14,8 @@ class AuthenticationStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.autheticate = channel.unary_unary(
-        '/Authentication/autheticate',
+    self.authenticate = channel.unary_unary(
+        '/Authentication/authenticate',
         request_serializer=auth__pb2.AuthRequest.SerializeToString,
         response_deserializer=auth__pb2.AuthResponse.FromString,
         )
@@ -25,7 +25,7 @@ class AuthenticationServicer(object):
   # missing associated documentation comment in .proto file
   pass
 
-  def autheticate(self, request, context):
+  def authenticate(self, request, context):
     # missing associated documentation comment in .proto file
     pass
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -35,8 +35,8 @@ class AuthenticationServicer(object):
 
 def add_AuthenticationServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'autheticate': grpc.unary_unary_rpc_method_handler(
-          servicer.autheticate,
+      'authenticate': grpc.unary_unary_rpc_method_handler(
+          servicer.authenticate,
           request_deserializer=auth__pb2.AuthRequest.FromString,
           response_serializer=auth__pb2.AuthResponse.SerializeToString,
       ),
