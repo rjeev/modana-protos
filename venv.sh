@@ -10,3 +10,4 @@ else
 fi
 
 export SERVICE_NAME="auth-service"
+export PORT="5000"
