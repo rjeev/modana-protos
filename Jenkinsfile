@@ -6,11 +6,11 @@ def HTTP_PORT="5000"
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
-        sh "ls"
+        sh "pwd"
 
     }
     stage('Deploy'){
-         sh "ls"
+         sh "pwd"
     }
 }
 
