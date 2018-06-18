@@ -22,7 +22,8 @@ pipeline {
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
-         sh "docker build -t $IMAGE_NAME ."
+        sh "deploy/prd/env.sh"
+        sh "docker build -t $IMAGE_NAME ."
     }
     stage('Deploy'){
          sh "docker run -p $HTTP_PORT:5000 -d --name=$CONTAINER_NAME  $IMAGE_NAME"
