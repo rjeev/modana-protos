@@ -7,6 +7,7 @@ node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
         sh "pwd"
+        sh "ls -la"
 
     }
     stage('Deploy'){
