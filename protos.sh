@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-PROTOS_PATH="protos"
+PROTOS_PATH="vendor"
 
 if [ "$#" -ne 1 ]; then
     echo "Invalid parameters, pass 'pull' or 'push'"
