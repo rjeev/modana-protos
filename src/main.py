@@ -10,7 +10,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     auth_pb2_grpc.add_AuthenticationServicer_to_server(Authentication(), server)
-    server.add_insecure_port('0.0.0.0:{}'.format(os.environ['PORT']))
+    server.add_insecure_port('0.0.0.0:{}'.format(os.environ.get('PORT', '5000')))
     server.start()
     try:
         while True:

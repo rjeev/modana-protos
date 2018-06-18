@@ -7,7 +7,7 @@ import autogen.auth_pb2_grpc as auth_pb2_grpc
 
 
 def run():
-    channel = grpc.insecure_channel('0.0.0.0:{}'.format(os.environ['PORT']))
+    channel = grpc.insecure_channel('0.0.0.0:{}'.format(os.environ.get('PORT', '5000')))
     stub = auth_pb2_grpc.AuthenticationStub(channel)
     response = stub.authenticate(auth_pb2.AuthRequest(username='test', password='test'))
     print(response.status, response.token)
