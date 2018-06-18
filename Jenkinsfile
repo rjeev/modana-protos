@@ -6,11 +6,11 @@ def HTTP_PORT="5000"
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
-        sh "docker build -t $IMAGE_NAME ."
+        sh "ls"
 
     }
     stage('Deploy'){
-         sh "docker run -p $HTTP_PORT:5000 -d --name=$CONTAINER_NAME  $IMAGE_NAME"
+         sh "ls"
     }
 }
 
