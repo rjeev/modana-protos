@@ -22,12 +22,10 @@ pipeline {
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
-        sh "pwd"
-        sh "ls -la"
-
+         sh "docker build -t $IMAGE_NAME ."
     }
     stage('Deploy'){
-         sh "pwd"
+         sh "docker run -p $HTTP_PORT:5000 -d --name=$CONTAINER_NAME  $IMAGE_NAME"
     }
 }
 
