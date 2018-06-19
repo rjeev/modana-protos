@@ -18,8 +18,8 @@ _sym_db = _symbol_database.Default()
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='auth.proto',
   package='',
-  syntax='proto3',
-  serialized_pb=_b('\n\nauth.proto\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"@\n\x0c\x41uthResponse\x12\x0e\n\x06status\x18\x01 \x01(\t\x12\r\n\x05token\x18\x02 \x01(\t\x12\x11\n\terror_msg\x18\x03 \x01(\t2?\n\x0e\x41uthentication\x12-\n\x0c\x61uthenticate\x12\x0c.AuthRequest\x1a\r.AuthResponse\"\x00\x62\x06proto3')
+  syntax='proto2',
+  serialized_pb=_b('\n\nauth.proto\"1\n\x0b\x41uthRequest\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"{\n\x0c\x41uthResponse\x12\x0e\n\x06status\x18\x01 \x02(\x05\x12\r\n\x05token\x18\x02 \x01(\t\x12#\n\x06\x65rrors\x18\x03 \x03(\x0b\x32\x13.AuthResponse.Error\x1a\'\n\x05\x45rror\x12\r\n\x05\x66ield\x18\x01 \x02(\t\x12\x0f\n\x07message\x18\x02 \x02(\t2?\n\x0e\x41uthentication\x12-\n\x0c\x61uthenticate\x12\x0c.AuthRequest\x1a\r.AuthResponse\"\x00')
 )
 
 
@@ -34,14 +34,14 @@ _AUTHREQUEST = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='username', full_name='AuthRequest.username', index=0,
-      number=1, type=9, cpp_type=9, label=1,
+      number=1, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='password', full_name='AuthRequest.password', index=1,
-      number=2, type=9, cpp_type=9, label=1,
+      number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -54,7 +54,7 @@ _AUTHREQUEST = _descriptor.Descriptor(
   ],
   options=None,
   is_extendable=False,
-  syntax='proto3',
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
@@ -62,6 +62,43 @@ _AUTHREQUEST = _descriptor.Descriptor(
   serialized_end=63,
 )
 
+
+_AUTHRESPONSE_ERROR = _descriptor.Descriptor(
+  name='Error',
+  full_name='AuthResponse.Error',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='field', full_name='AuthResponse.Error.field', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='message', full_name='AuthResponse.Error.message', index=1,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=149,
+  serialized_end=188,
+)
 
 _AUTHRESPONSE = _descriptor.Descriptor(
   name='AuthResponse',
@@ -72,8 +109,8 @@ _AUTHRESPONSE = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='status', full_name='AuthResponse.status', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
@@ -85,28 +122,30 @@ _AUTHRESPONSE = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='error_msg', full_name='AuthResponse.error_msg', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='errors', full_name='AuthResponse.errors', index=2,
+      number=3, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_AUTHRESPONSE_ERROR, ],
   enum_types=[
   ],
   options=None,
   is_extendable=False,
-  syntax='proto3',
+  syntax='proto2',
   extension_ranges=[],
   oneofs=[
   ],
   serialized_start=65,
-  serialized_end=129,
+  serialized_end=188,
 )
 
+_AUTHRESPONSE_ERROR.containing_type = _AUTHRESPONSE
+_AUTHRESPONSE.fields_by_name['errors'].message_type = _AUTHRESPONSE_ERROR
 DESCRIPTOR.message_types_by_name['AuthRequest'] = _AUTHREQUEST
 DESCRIPTOR.message_types_by_name['AuthResponse'] = _AUTHRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -119,11 +158,19 @@ AuthRequest = _reflection.GeneratedProtocolMessageType('AuthRequest', (_message.
 _sym_db.RegisterMessage(AuthRequest)
 
 AuthResponse = _reflection.GeneratedProtocolMessageType('AuthResponse', (_message.Message,), dict(
+
+  Error = _reflection.GeneratedProtocolMessageType('Error', (_message.Message,), dict(
+    DESCRIPTOR = _AUTHRESPONSE_ERROR,
+    __module__ = 'auth_pb2'
+    # @@protoc_insertion_point(class_scope:AuthResponse.Error)
+    ))
+  ,
   DESCRIPTOR = _AUTHRESPONSE,
   __module__ = 'auth_pb2'
   # @@protoc_insertion_point(class_scope:AuthResponse)
   ))
 _sym_db.RegisterMessage(AuthResponse)
+_sym_db.RegisterMessage(AuthResponse.Error)
 
 
 
@@ -133,8 +180,8 @@ _AUTHENTICATION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=131,
-  serialized_end=194,
+  serialized_start=190,
+  serialized_end=253,
   methods=[
   _descriptor.MethodDescriptor(
     name='authenticate',

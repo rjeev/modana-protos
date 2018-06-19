@@ -10,4 +10,5 @@ else
 fi
 
 export SERVICE_NAME="auth-service"
-#export PORT="5000"
+export PORT="5000"
+export API_URL="http://127.0.0.1:8000/"
