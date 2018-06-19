@@ -22,9 +22,6 @@ pipeline {
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
-        sh 'cd configs && ls'
-        sh "export SERVICE_NAME=10"
-        sh "echo $SERVICE_NAME"
         sh "docker build -t $IMAGE_NAME ."
     }
     stage('Deploy'){
