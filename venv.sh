@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#!/usr/bin/env bash
 DIRECTORY=virtualenvs/.auth-service
 deactivate 2> /dev/null
 if [ -d "${DIRECTORY}" ]; then
@@ -8,7 +7,3 @@ else
     virtualenv -p `which python3` ${DIRECTORY}
     source ${DIRECTORY}/bin/activate
 fi
-
-export SERVICE_NAME="auth-service"
-export PORT="5000"
-export API_URL="http://127.0.0.1:8000/"

@@ -22,6 +22,8 @@ pipeline {
 node {
     stage('Build') {
         imagePrune(CONTAINER_NAME)
+        sh 'cd configs && source dev.env'
+        sh "echo $SERVICE_NAME"
         sh "docker build -t $IMAGE_NAME ."
     }
     stage('Deploy'){
