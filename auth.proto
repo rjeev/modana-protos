@@ -8,6 +8,7 @@ service Authentication {
 message AuthRequest {
   required string username = 1;
   required string password = 2;
+  optional string remeber= 3;
 }
 
 message AuthResponse {
