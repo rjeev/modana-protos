@@ -1,0 +1,22 @@
+syntax = "proto2";
+
+service Authentication {
+    rpc authenticate (AuthRequest) returns (AuthResponse) {}
+}
+
+
+message AuthRequest {
+  required string username = 1;
+  required string password = 2;
+  optional string remeber= 3;
+}
+
+message AuthResponse {
+  message Error{
+      required string field =1;
+      required string message =2;
+  }
+  required int32 status = 1;
+  optional string token = 2;
+  repeated Error errors = 3;
+}
