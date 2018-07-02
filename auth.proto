@@ -1,22 +1,194 @@
 syntax = "proto2";
 
 service Authentication {
-    rpc authenticate (AuthRequest) returns (AuthResponse) {}
+    rpc authenticate (AuthRequest) returns (AuthResponse) {
+    }
 }
 
 
 message AuthRequest {
-  required string username = 1;
-  required string password = 2;
+    required string username = 1;
+    required string password = 2;
 
 }
 
 message AuthResponse {
-  message Error{
-      required string field =1;
-      required string message =2;
-  }
-  required int32 status = 1;
-  optional string token = 2;
-  repeated Error errors = 3;
+    message Error {
+        required string field = 1;
+        required string message = 2;
+    }
+    required int32 status = 1;
+    optional string token = 2;
+    repeated Error errors = 3;
+}
+
+message Error {
+    message keyValue {
+        required string field = 1;
+        required string message = 2;
+    }
+    optional string detail = 1;
+    repeated keyValue errors = 2;
+
+}
+
+message GenericResponse {
+    required int32 status = 1;
+    optional Error error = 2;
+}
+
+service CompanyRegistration {
+    rpc company_register (RegisterRequest) returns (RegisterResponse) {
+    }
+    rpc company_send_email (SendEmailRequest) returns (SendEmailRequest) {
+    }
+    rpc company_send_code (SendCodeRequest) returns (SendEmailResponse) {
+    }
+    rpc company_verifiy_code (VerifyCodeRequest) returns (VerifyCodeResponse) {
+    }
+    rpc company_set_password (SetPasswordRequest) returns (SetPasswordResponse) {
+    }
+    rpc company_complete_register (CompleteRegisterRequest) returns (CompleteRegisterResponse) {
+    }
+
+}
+
+service CompanySettings {
+    rpc get_company_type (CompanyTypeRequest) returns (CompanyTypeResponse) {
+    }
+    rpc get_business_type (BusinessTypeRequest) returns (BusinessTypeResponse) {
+    }
+}
+
+
+
+message RegisterRequest {
+    message Body {
+        required string first_name = 1;
+        required string last_name = 2;
+        required string username = 3;
+        required string phone_number = 4;
+        required string email = 5;
+        required string company_name = 6;
+        required string address_detail = 7;
+    }
+    required Body body = 1;
+
+}
+
+message RegisterResponse {
+    required GenericResponse response = 1;
+
+}
+
+message SendEmailRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+}
+
+message SendEmailResponse {
+    required GenericResponse response = 1;
+
+}
+
+message SendCodeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+
+}
+
+message SendCodeResponse {
+    required GenericResponse response = 1;
+}
+
+message VerifyCodeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        required string code = 1;
+    }
+    required Body body = 2;
+
+}
+
+message VerifyCodeResponse {
+    required GenericResponse response = 1;
+}
+
+message SetPasswordRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        required string password = 1;
+    }
+    required Body body = 2;
+
+}
+
+message SetPasswordResponse {
+    required GenericResponse response = 1;
+
+}
+
+message CompleteRegisterRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        required string comapny_type = 1;
+        required string business_type = 2;
+        required string tax_id = 3;
+    }
+    required Body body = 2;
+
+}
+
+message CompleteRegisterResponse {
+    required GenericResponse response = 1;
+
+}
+
+message CompanyTypeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+
+}
+
+message CompanyTypeResponse {
+     message Body {
+        required string idx = 1;
+        required string name = 2;
+     }
+     required GenericResponse response = 1;
+     repeated Body body = 2;
+}
+
+message BusinessTypeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+
+}
+
+message BusinessTypeResponse {
+    message Body {
+        required string idx = 1;
+        required string name = 2;
+    }
+    required GenericResponse response = 1;
+    repeated Body body = 2;
+
+
 }
