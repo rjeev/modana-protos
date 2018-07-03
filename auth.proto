@@ -40,7 +40,7 @@ message GenericResponse {
 service CompanyRegistration {
     rpc company_register (RegisterRequest) returns (RegisterResponse) {
     }
-    rpc company_send_email (SendEmailRequest) returns (SendEmailRequest) {
+    rpc company_send_email (SendEmailRequest) returns (SendEmailResponse) {
     }
     rpc company_send_code (SendCodeRequest) returns (SendEmailResponse) {
     }
