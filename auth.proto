@@ -195,7 +195,6 @@ message BusinessTypeResponse {
 }
 
 message AddressRequest {
-
 }
 
 message AddressResponse {
