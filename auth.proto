@@ -207,7 +207,6 @@ message BusinessTypeResponse {
 
 }
 
-
 message EmployeeRegisterRequest {
     message Header {
         required string token = 1;
