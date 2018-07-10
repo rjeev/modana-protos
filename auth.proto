@@ -44,7 +44,7 @@ service CompanyRegistration {
     }
     rpc company_send_code (SendCodeRequest) returns (SendEmailResponse) {
     }
-    rpc company_verify_code (VerifyCodeRequest) returns (VerifyCodeResponse) {
+    rpc company_verifiy_code (VerifyCodeRequest) returns (VerifyCodeResponse) {
     }
     rpc company_set_password (SetPasswordRequest) returns (SetPasswordResponse) {
     }
