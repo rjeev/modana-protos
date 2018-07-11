@@ -63,6 +63,12 @@ service CompanySettings {
 service EmployeeRegistration {
     rpc employee_register (EmployeeRegisterRequest) returns (EmployeeRegisterResponse) {
     }
+    rpc employee_code_verify(EmployeeCodeVerifyRequest) returns (EmployeeCodeVerifyResponse){
+
+    }
+    rpc employee_set_password(EmployeeSetPasswordRequest) returns (EmployeeSetPasswordResponse){
+
+    }
 }
 
 service Address{
@@ -243,3 +249,44 @@ message EmployeeRegisterResponse {
 
 }
 
+message EmployeeCodeVerifyRequest {
+
+    message Body {
+         required string code = 1;
+    }
+
+    required Body body = 1;
+
+}
+
+message EmployeeCodeVerifyResponse {
+
+    required GenericResponse response = 1;
+    message Body {
+        required string token = 1;
+        required string username = 2;
+        required string first_name = 3;
+        required string last_name = 4;
+        required string phone_number = 5;
+        required string email = 6;
+    }
+    optional Body body = 2;
+
+}
+
+message EmployeeSetPasswordRequest {
+    message Header {
+        required string token = 1;
+    }
+
+    required Header header = 1;
+    message Body  {
+        required string password = 1;
+    }
+    required Body body = 2;
+}
+
+message EmployeeSetPasswordResponse {
+    required GenericResponse response = 1;
+
+}
