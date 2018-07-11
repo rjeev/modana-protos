@@ -65,6 +65,10 @@ service EmployeeRegistration {
     }
 }
 
+service Address{
+    rpc get_address (AddressRequest) returns (AddressResponse) {
+    }
+}
 
 message RegisterRequest {
     message Body {
@@ -74,7 +78,9 @@ message RegisterRequest {
         required string phone_number = 4;
         required string email = 5;
         required string company_name = 6;
-        required string address_detail = 7;
+        required string address = 7;
+        required string address_detail = 8;
+        required bool is_terms_accepted = 9;
     }
     required Body body = 1;
 
@@ -151,16 +157,7 @@ message CompleteRegisterRequest {
         required string company_type = 1;
         required string business_type = 2;
         required string tax_id = 3;
-        enum Corpus {
-            UNIVERSAL = 0;
-            WEB = 1;
-            IMAGES = 2;
-            LOCAL = 3;
-            NEWS = 4;
-            PRODUCTS = 5;
-            VIDEO = 6;
-        }
-        optional Corpus company_logo = 4 [default = IMAGES];
+        optional bytes company_logo = 4;
     }
     required Body body = 2;
 
@@ -172,10 +169,6 @@ message CompleteRegisterResponse {
 }
 
 message CompanyTypeRequest {
-    message Header {
-        required string token = 1;
-    }
-    required Header header = 1;
 
 }
 
@@ -189,10 +182,6 @@ message CompanyTypeResponse {
 }
 
 message BusinessTypeRequest {
-    message Header {
-        required string token = 1;
-    }
-    required Header header = 1;
 
 }
 
@@ -204,6 +193,19 @@ message BusinessTypeResponse {
     required GenericResponse response = 1;
     repeated Body body = 2;
 
+
+}
+
+message AddressRequest {
+}
+
+message AddressResponse {
+    message Body {
+        required string idx = 1;
+        required string name = 2;
+    }
+    required GenericResponse response = 1;
+    repeated Body body = 2;
 
 }
 
