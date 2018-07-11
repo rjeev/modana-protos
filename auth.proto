@@ -223,7 +223,6 @@ message AddressResponse {
 message EmployeeRegisterRequest {
     message Header {
         required string token = 1;
-        required  bytes abc = 2;
     }
     required Header header = 1;
     message Body {
