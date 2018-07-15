@@ -211,6 +211,7 @@ message AddressResponse {
 
 message EmployeeRegisterRequest {
     message Header {
+
         required string token = 1;
     }
     required Header header = 1;
