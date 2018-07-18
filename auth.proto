@@ -20,6 +20,8 @@ message AuthResponse {
     required int32 status = 1;
     optional string token = 2;
     repeated Error errors = 3;
+    optional string username = 4;
+    optional bool is_completely_registered = 5;
 }
 
 message Error {
@@ -50,7 +52,8 @@ service CompanyRegistration {
     }
     rpc company_complete_register (CompleteRegisterRequest) returns (CompleteRegisterResponse) {
     }
-
+    rpc update_company_by_admin (UpdateCompanyRequest) returns (UpdateCompanyResponse) {
+    }
 }
 
 service CompanySettings {
@@ -62,6 +65,20 @@ service CompanySettings {
 
 service EmployeeRegistration {
     rpc employee_register (EmployeeRegisterRequest) returns (EmployeeRegisterResponse) {
+    }
+    rpc employee_code_verify(EmployeeCodeVerifyRequest) returns (EmployeeCodeVerifyResponse){
+
+    }
+    rpc employee_set_password(EmployeeSetPasswordRequest) returns (EmployeeSetPasswordResponse){
+
+    }
+    rpc active_inactive_employee (ActiveInactiveEmployeeRequest) returns (ActiveInactiveEmployeeResponse) {
+    }
+    rpc get_employee (EmployeeRequest) returns (EmployeeResponse) {
+    }
+    rpc delete_employee (DeleteEmployeeRequest) returns (EmployeeResponse) {
+    }
+    rpc update_employee (EmployeeUpdateRequest) returns (EmployeeResponse) {
     }
 }
 
@@ -216,18 +233,166 @@ message EmployeeRegisterRequest {
     }
     required Header header = 1;
     message Body {
-        required string first_name = 1;
-        required string last_name = 2;
-        required string username = 3;
-        required string phone_number = 4;
-        required string email = 5;
-        optional string password = 6;
+        optional string idx = 1;
+        required string first_name = 2;
+        required string last_name = 3;
+        required string username = 4;
+        required string phone_number = 5;
+        required string email = 6;
+        optional string password = 7;
+        required string hire_type = 8;
+        required string pay_type = 9;
+        required float pay_rate = 10;
+        required float deduction_rate = 11;
+
     }
     required Body body = 2;
-
+    optional string idx = 3;
 }
 
 message EmployeeRegisterResponse {
     required GenericResponse response = 1;
 
+}
+
+message EmployeeUpdateRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        optional string first_name = 1;
+        optional string last_name = 2;
+        optional string username = 3;
+        optional string phone_number = 4;
+        optional string email = 5;
+        optional string password = 6;
+        optional string hire_type = 7;
+        optional string pay_type = 8;
+        optional float pay_rate = 9;
+        optional float deduction_rate = 10;
+    }
+    required Body body = 2;
+    required string idx = 3;
+}
+
+message EmployeeCodeVerifyRequest {
+
+    message Body {
+         required string code = 1;
+    }
+
+    required Body body = 1;
+
+}
+
+message EmployeeCodeVerifyResponse {
+
+    required GenericResponse response = 1;
+    message Body {
+        required string token = 1;
+        required string username = 2;
+        required string first_name = 3;
+        required string last_name = 4;
+        required string phone_number = 5;
+        required string email = 6;
+    }
+    optional Body body = 2;
+
+}
+
+message EmployeeSetPasswordRequest {
+    message Header {
+        required string token = 1;
+    }
+
+    required Header header = 1;
+    message Body  {
+        required string password = 1;
+    }
+    required Body body = 2;
+}
+
+message EmployeeSetPasswordResponse {
+    required GenericResponse response = 1;
+
+}
+
+message EmployeeRequest {
+    message Header {
+        required string token = 1;
+    }
+
+    required Header header = 1;
+}
+
+message EmployeeResponse {
+    message Body {
+        required string idx = 1;
+        required string first_name = 2;
+        required string last_name = 3;
+        required string username = 4;
+        required string phone_number = 5;
+        required string email = 6;
+        optional string password = 7;
+        required string hire_type = 8;
+        required string pay_type = 9;
+        required float pay_rate = 10;
+        required float deduction_rate = 11;
+    }
+    required GenericResponse response = 1;
+    repeated Body body = 2;
+
+}
+
+message ActiveInactiveEmployeeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        required bool is_active = 1;
+    }
+    required Body body = 2;
+    required string idx = 3;
+
+}
+
+message ActiveInactiveEmployeeResponse {
+    required GenericResponse response = 1;
+
+}
+
+message DeleteEmployeeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    required string idx = 2;
+
+}
+
+message UpdateCompanyRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    message Body {
+        optional string first_name = 1;
+        optional string last_name = 2;
+        optional string username = 3;
+        optional string phone_number = 4;
+        optional string email = 5;
+        optional string company_name = 6;
+        optional string address = 7;
+        optional string address_detail = 8;
+        optional bool is_terms_accepted = 9;
+    }
+    required Body body = 2;
+    required string idx = 3;
+
+}
+
+message UpdateCompanyResponse {
+    required GenericResponse response = 1;
 }
