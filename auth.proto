@@ -234,17 +234,16 @@ message EmployeeRegisterRequest {
     }
     required Header header = 1;
     message Body {
-        optional string idx = 1;
-        required string first_name = 2;
-        required string last_name = 3;
-        required string username = 4;
-        required string phone_number = 5;
-        required string email = 6;
-        optional string password = 7;
-        required string hire_type = 8;
-        required string pay_type = 9;
-        required float pay_rate = 10;
-        required float deduction_rate = 11;
+        required string first_name = 1;
+        required string last_name = 2;
+        required string username = 3;
+        required string phone_number = 4;
+        required string email = 5;
+        optional string password = 6;
+        required string hire_type = 7;
+        required string pay_type = 8;
+        required float pay_rate = 9;
+        required float deduction_rate = 10;
 
     }
     required Body body = 2;
@@ -396,4 +395,5 @@ message UpdateCompanyRequest {
 
 message UpdateCompanyResponse {
     required GenericResponse response = 1;
+
 }
