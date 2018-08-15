@@ -171,10 +171,25 @@ message CompleteRegisterRequest {
     }
     required Header header = 1;
     message Body {
-        required string company_type = 1;
-        required string business_type = 2;
-        required string tax_id = 3;
-        optional bytes company_logo = 4;
+        optional string business_type = 1;
+        optional string tax_id = 2;
+        optional bytes company_logo = 3;
+
+        required string name = 4;
+        optional string address = 5;
+        optional string address_detail = 6;
+        optional bool is_terms_accepted = 7;
+        optional string email = 8;
+        optional string phone_number_ext = 9;
+        optional string phone_number = 10;
+        optional float latitude = 11;
+        optional float longitude = 12;
+        optional string npwp = 13;
+        optional bytes npwp_image = 14;
+        optional string bank = 15;
+        optional string account_name = 16;
+        optional string account_number = 17;
+        optional string website_url = 18;
     }
     required Body body = 2;
 
