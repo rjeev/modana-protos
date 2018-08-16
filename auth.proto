@@ -26,6 +26,8 @@ message AuthResponse {
         required string idx = 1;
     }
     optional Profile profile = 6;
+    required string phone_number = 7;
+    optional string phone_number_ext = 8;
 }
 
 message Error {
