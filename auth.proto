@@ -24,6 +24,7 @@ message AuthResponse {
     optional bool is_completely_registered = 5;
     message Profile {
         required string idx = 1;
+        optional string name = 2;
     }
     optional Profile profile = 6;
     required string phone_number = 7;
