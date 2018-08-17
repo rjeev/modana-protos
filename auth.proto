@@ -319,6 +319,7 @@ message EmployeeCodeVerifyResponse {
         required string last_name = 4;
         required string phone_number = 5;
         required string email = 6;
+        required bool is_initiated = 7;
     }
     optional Body body = 2;
 
