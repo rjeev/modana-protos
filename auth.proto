@@ -99,6 +99,10 @@ service Address{
 service UserAccount{
     rpc check_account_initialization (AccountInitializeRequest) returns (AccountInitializeResponse) {
     }
+    rpc employee_enroll_update (EmployeeEnroll) returns (EmployeeEnrollResponse) {
+    }
+    rpc employee_enroll_detail (EmployeeEnrollRequest) returns (EmployeeEnroll) {
+    }
 }
 
 message RegisterRequest {
@@ -493,4 +497,34 @@ message AccountInitializeResponse {
         required bool is_initiated = 1;
     }
     required Body body = 2;
+}
+
+message EmployeeEnroll {
+    optional GenericResponse response = 1;
+    message Header {
+        required string token = 1;
+    }
+    optional Header header = 2;
+    message Body {
+        required string first_name = 1;
+        optional string last_name = 2;
+        required string date_of_birth = 3;
+        required string gender = 4;
+    }
+    required Body body = 3;
+    optional string idx = 4;
+}
+
+message EmployeeEnrollRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+    required string idx = 2;
+
+}
+
+message EmployeeEnrollResponse {
+    required GenericResponse response = 1;
+
 }
