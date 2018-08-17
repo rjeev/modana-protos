@@ -96,6 +96,11 @@ service Address{
     }
 }
 
+service UserAccount{
+    rpc check_account_initialization (AccountInitializeRequest) returns (AccountInitializeResponse) {
+    }
+}
+
 message RegisterRequest {
     message Body {
         required string company_name = 1;
@@ -471,4 +476,20 @@ message CompanyDetailResponse {
         required string tax_id = 14;
     }
     optional Body body = 2;
+}
+
+
+message AccountInitializeRequest {
+    message Header {
+        required string token = 1;
+    }
+    required Header header = 1;
+}
+
+message AccountInitializeResponse {
+    required GenericResponse response = 1;
+    message Body {
+        required bool is_initiated = 1;
+    }
+    required Body body = 2;
 }
