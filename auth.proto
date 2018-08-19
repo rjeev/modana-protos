@@ -318,13 +318,14 @@ message EmployeeCodeVerifyResponse {
 
     required GenericResponse response = 1;
     message Body {
-        required string token = 1;
-        required string username = 2;
-        required string first_name = 3;
-        required string last_name = 4;
-        required string phone_number = 5;
-        required string email = 6;
-        required bool is_initiated = 7;
+        required string idx = 1;
+        required string token = 2;
+        required string username = 3;
+        required string first_name = 4;
+        required string last_name = 5;
+        required string phone_number = 6;
+        required string email = 7;
+        required bool is_initiated = 8;
     }
     optional Body body = 2;
 
