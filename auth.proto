@@ -368,16 +368,16 @@ message EmployeeRequest {
 message EmployeeResponse {
     message Body {
         required string idx = 1;
-        required string first_name = 2;
-        required string last_name = 3;
-        required string username = 4;
+        optional string first_name = 2;
+        optional string last_name = 3;
+        optional string username = 4;
         required string phone_number = 5;
-        required string email = 6;
+        optional string email = 6;
         optional string password = 7;
-        required string hire_type = 8;
-        required string pay_type = 9;
-        required float pay_rate = 10;
-        required float deduction_rate = 11;
+        optional string hire_type = 8;
+        optional string pay_type = 9;
+        optional float pay_rate = 10;
+        optional float deduction_rate = 11;
     }
     required GenericResponse response = 1;
     repeated Body body = 2;
