@@ -112,6 +112,11 @@ service CompanyInfo{
     }
 }
 
+service BankInfo{
+    rpc get_bank_list (BankListRequest) returns (BankListResponse) {
+    }
+}
+
 message RegisterRequest {
     message Body {
         required string company_name = 1;
@@ -570,6 +575,25 @@ message EmployeePositionListResponse {
     message Body {
         required string idx = 1;
         required string name = 2;
+    }
+    required GenericResponse response = 1;
+    repeated Body body = 2;
+
+}
+
+message BankListRequest {
+    message Header {
+        required string token = 1;
+    }
+
+    required Header header = 1;
+}
+
+message BankListResponse {
+    message Body {
+        required string idx = 1;
+        required string name = 2;
+        required string bank_code = 3;
     }
     required GenericResponse response = 1;
     repeated Body body = 2;
